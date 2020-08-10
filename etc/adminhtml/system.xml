@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="twofactorauth">
+            <group id="general">
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" canRestore="1">
+                    <label>Enable 2FA</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Warning: Enabling 2FA will immediately prompt admin user for OTP code.</comment>
+                </field>
+                <field id="force_providers">
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="webapi_notification_url">
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
