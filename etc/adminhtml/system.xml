@@ -9,6 +9,10 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Warning: Enabling 2FA will immediately prompt admin user for OTP code.</comment>
                 </field>
+                <field id="enable_api" translate="label" type="select" sortOrder="100" showInDefault="1" canRestore="1">
+                    <label>Enable 2FA for token service</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
                 <field id="force_providers">
                     <depends>
                         <field id="enable">1</field>

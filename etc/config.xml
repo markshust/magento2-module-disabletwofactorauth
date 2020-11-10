@@ -5,6 +5,7 @@
         <twofactorauth>
             <general>
                 <enable>1</enable>
+                <enable_api>1</enable_api>
             </general>
         </twofactorauth>
     </default>
