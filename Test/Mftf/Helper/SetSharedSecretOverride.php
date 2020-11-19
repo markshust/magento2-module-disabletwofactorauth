@@ -52,6 +52,10 @@ class SetSharedSecretOverride extends Helper
             $tfaEnabled = (bool)$webDriver->magentoCLI('config:show twofactorauth/general/enable');
         } catch (TestFrameworkException $exception) {
             $tfaEnabled = false;
+
+            return $tfaEnabled;
         }
+
+        return true;
     }
 }
