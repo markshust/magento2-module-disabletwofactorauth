@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="AdminLoginActionGroup">
+        <helper class="MarkShust\DisableTwoFactorAuth\Test\Mftf\Helper\SetSharedSecretOverride" method="execute" stepKey="setSharedSecret" before="clickLogin">
+            <argument name="username">{{username}}</argument>
+        </helper>
+        <helper class="MarkShust\DisableTwoFactorAuth\Test\Mftf\Helper\FillOtpOverride" method="execute" stepKey="fillOtp" before="clickDontAllowButtonIfVisible">
+            <argument name="tfaAuthCodeSelector">{{AdminGoogleTfaSection.tfaAuthCode}}</argument>
+            <argument name="confirmSelector">{{AdminGoogleTfaSection.confirm}}</argument>
+            <argument name="errorMessageSelector">{{AdminLoginMessagesSection.messageByType('error')}}</argument>
+        </helper>
+    </actionGroup>
+</actionGroups>
