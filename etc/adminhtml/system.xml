@@ -1,16 +1,15 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="twofactorauth">
             <group id="general">
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" canRestore="1">
+                <field id="enable" translate="label" type="select" sortOrder="100" showInDefault="1" canRestore="1">
                     <label>Enable 2FA</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Warning: Enabling 2FA will immediately prompt admin user for OTP code.</comment>
                 </field>
-                <field id="enable_api" translate="label" type="select" sortOrder="100" showInDefault="1" canRestore="1">
-                    <label>Enable 2FA for token service</label>
+                <field id="enable_for_api_token_generation" translate="label" type="select" sortOrder="200" showInDefault="1" canRestore="1">
+                    <label>Enable 2FA for API Token Generation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="force_providers">

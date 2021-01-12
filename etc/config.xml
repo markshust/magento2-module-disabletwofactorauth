@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <twofactorauth>
             <general>
                 <enable>1</enable>
-                <enable_api>1</enable_api>
+                <enable_for_api_token_generation>1</enable_for_api_token_generation>
             </general>
         </twofactorauth>
     </default>
