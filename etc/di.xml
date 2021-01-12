@@ -3,4 +3,7 @@
     <type name="Magento\TwoFactorAuth\Model\TfaSession">
         <plugin name="bypassTwoFactorAuth" type="MarkShust\DisableTwoFactorAuth\Plugin\BypassTwoFactorAuth"/>
     </type>
+    <type name="Magento\TwoFactorAuth\Model\AdminAccessTokenService">
+        <plugin name="bypassTwoFactorAuthForApiTokenGeneration" type="MarkShust\DisableTwoFactorAuth\Plugin\BypassTwoFactorAuthForApiTokenGeneration"/>
+    </type>
 </config>

@@ -42,14 +42,25 @@ bin/magento setup:upgrade
 This module keeps 2FA enabled by default. This is to prevent any unexpected side effects or security loopholes from
 being introduced during automated installation processes.
 
-After installing the module, one can disable 2FA by going to **Admin > Stores > Settings > Configuration >
-Security > 2FA**, and setting *Enable 2FA* to **No**.
+### Disable 2FA
 
-This setting can also be toggled to a 1 or 0 to respectively enable or disable 2FA from the command-line console:
+Enables the bypass of 2FA for admin access. This can be useful within development & integration environments.
 
-```
-bin/magento config:set twofactorauth/general/enable 0
-```
+Visit **Admin > Stores > Settings > Configuration > Security > 2FA** and set *Enable 2FA* to **No**.
+
+CLI: `bin/magento config:set twofactorauth/general/enable 0`
+
+*NOTE: Always keep 2FA enabled within production environments for security purposes.*
+
+### Disable 2FA for API Token Generation
+
+Enables the bypass of 2FA for API token generation. This can be useful for third-party vendors during module development.
+
+Visit **Admin > Stores > Settings > Configuration > Security > 2FA** and set *Enable 2FA for API Token Generation* to **No**.
+
+CLI: `bin/magento config:set twofactorauth/general/enable_for_api_token_generation 0`
+
+*NOTE: Always keep 2FA enabled within production environments for security purposes.*
 
 ## License
 
