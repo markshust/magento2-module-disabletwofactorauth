@@ -15,7 +15,7 @@ class BypassTwoFactorAuth
     const XML_PATH_CONFIG_ENABLE = 'twofactorauth/general/enable';
 
     /** @var ScopeConfigInterface */
-    private ScopeConfigInterface $scopeConfig;
+    private $scopeConfig;
 
     /**
      * BypassTwoFactorAuth constructor.

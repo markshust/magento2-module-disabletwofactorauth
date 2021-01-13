@@ -6,7 +6,7 @@
         "magento/framework": ">=103"
     },
     "type": "magento2-module",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "license": [
         "MIT"
     ],

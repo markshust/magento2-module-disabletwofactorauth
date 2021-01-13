@@ -20,10 +20,10 @@ class BypassTwoFactorAuthForApiTokenGeneration
     const XML_PATH_CONFIG_ENABLE_FOR_API_TOKEN_GENERATION = 'twofactorauth/general/enable_for_api_token_generation';
 
     /** @var ScopeConfigInterface */
-    private ScopeConfigInterface $scopeConfig;
+    private $scopeConfig;
 
     /** @var AdminTokenServiceInterface */
-    private AdminTokenServiceInterface $adminTokenService;
+    private $adminTokenService;
 
     /**
      * BypassTwoFactorAuthForApiTokenGeneration constructor.
