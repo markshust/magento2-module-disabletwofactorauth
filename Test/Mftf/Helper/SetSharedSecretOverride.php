@@ -49,7 +49,7 @@ class SetSharedSecretOverride extends Helper
     private function checkIfTwoFactorIsEnabled(MagentoWebDriver $webDriver): bool
     {
         try {
-            return (bool)$webDriver->magentoCLI('config:show twofactorauth/general/enable');
+            return (bool)str_replace(PHP_EOL, '', $webDriver->magentoCLI('config:show twofactorauth/general/enable'));
         } catch (TestFrameworkException $exception) {
 
             return false;
