@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace MarkShust\DisableTwoFactorAuth\Plugin;
 
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\TwoFactorAuth\Model\TfaSession;
+use MarkShust\DisableTwoFactorAuth\App\Config\TwoFactorAuthInterface;
 
 /**
  * Class BypassTwoFactorAuth
@@ -13,19 +13,19 @@ use Magento\TwoFactorAuth\Model\TfaSession;
  */
 class BypassTwoFactorAuth
 {
-    const XML_PATH_CONFIG_ENABLE = 'twofactorauth/general/enable';
-
-    /** @var ScopeConfigInterface */
-    private $scopeConfig;
+    /**
+     * @var TwoFactorAuthInterface
+     */
+    private $twoFactorAuthConfig;
 
     /**
      * BypassTwoFactorAuth constructor.
-     * @param ScopeConfigInterface $scopeConfig
+     * @param TwoFactorAuthInterface $twoFactorAuthConfig
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig
+        TwoFactorAuthInterface $twoFactorAuthConfig
     ) {
-        $this->scopeConfig = $scopeConfig;
+        $this->twoFactorAuthConfig = $twoFactorAuthConfig;
     }
 
     /**
@@ -45,7 +45,7 @@ class BypassTwoFactorAuth
         TfaSession $subject,
         $result
     ): bool {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_CONFIG_ENABLE)
+        return $this->twoFactorAuthConfig->isEnable()
             ? $result
             : true;
     }

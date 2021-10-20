@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace MarkShust\DisableTwoFactorAuth\Plugin;
 
 use Closure;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\AuthenticationException;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Integration\Api\AdminTokenServiceInterface;
 use Magento\TwoFactorAuth\Model\AdminAccessTokenService;
+use MarkShust\DisableTwoFactorAuth\App\Config\TwoFactorAuthInterface;
 
 /**
  * Class BypassWebApiTwoFactorAuth
@@ -18,25 +18,26 @@ use Magento\TwoFactorAuth\Model\AdminAccessTokenService;
  */
 class BypassTwoFactorAuthForApiTokenGeneration
 {
-    const XML_PATH_CONFIG_ENABLE_FOR_API_TOKEN_GENERATION = 'twofactorauth/general/enable_for_api_token_generation';
-
-    /** @var ScopeConfigInterface */
-    private $scopeConfig;
 
     /** @var AdminTokenServiceInterface */
     private $adminTokenService;
 
     /**
+     * @var TwoFactorAuthInterface
+     */
+    private $twoFactorAuthConfig;
+
+    /**
      * BypassTwoFactorAuthForApiTokenGeneration constructor.
      * @param AdminTokenServiceInterface $adminTokenService
-     * @param ScopeConfigInterface $scopeConfig
+     * @param TwoFactorAuthInterface $twoFactorAuthConfig
      */
     public function __construct(
         AdminTokenServiceInterface $adminTokenService,
-        ScopeConfigInterface $scopeConfig
+        TwoFactorAuthInterface $twoFactorAuthConfig
     ) {
-        $this->scopeConfig = $scopeConfig;
         $this->adminTokenService = $adminTokenService;
+        $this->twoFactorAuthConfig = $twoFactorAuthConfig;
     }
 
     /**
@@ -60,7 +61,7 @@ class BypassTwoFactorAuthForApiTokenGeneration
         $username,
         $password
     ): string {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_CONFIG_ENABLE_FOR_API_TOKEN_GENERATION)
+        return $this->twoFactorAuthConfig->isEnableApiTokenGeneration()
             ? $proceed($username, $password)
             : $this->adminTokenService->createAdminAccessToken($username, $password);
     }
