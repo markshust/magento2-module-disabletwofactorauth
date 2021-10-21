@@ -37,16 +37,16 @@ class BypassTwoFactorAuth
      *
      * NOTE: Always keep 2FA enabled within production environments for security purposes.
      *
-     * @param TfaSession $subject
-     * @param $result
+     * @param TfaSession $tfaSession
+     * @param $isGranted
      * @return bool
      */
     public function afterIsGranted(
-        TfaSession $subject,
-        $result
+        TfaSession $tfaSession,
+        $isGranted
     ): bool {
         return $this->twoFactorAuthConfig->isEnable()
-            ? $result
+            ? $isGranted
             : true;
     }
 }
