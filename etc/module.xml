@@ -3,6 +3,7 @@
     <module name="MarkShust_DisableTwoFactorAuth">
         <sequence>
             <module name="Magento_TwoFactorAuth"/>
+            <module name="Magento_User"/>
         </sequence>
     </module>
 </config>
