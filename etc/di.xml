@@ -20,4 +20,18 @@
         for="MarkShust\DisableTwoFactorAuth\App\Config\TwoFactorAuthInterface"
         type="MarkShust\DisableTwoFactorAuth\Model\Config\TwoFactorAuthConfig"
     />
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="markshust_disabletwofactorauth_disable_two_factor_auth_admin_command" xsi:type="object">
+                    MarkShust\DisableTwoFactorAuth\Console\Command\DisableTwoFactorAuthAdminCommand
+                </item>
+                <item name="markshust_disabletwofactorauth_enable_two_factor_auth_admin_command" xsi:type="object">
+                    MarkShust\DisableTwoFactorAuth\Console\Command\EnableTwoFactorAuthAdminCommand
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>
