@@ -67,7 +67,7 @@ class BypassTwoFactorAuthForAdmins
     public function isEnableAuthByUser(): bool
     {
         return ($user = $this->authSession->getUser())
-            ? (bool) $user->getData(ModifierUserInterface::IS_ENABLE_TWOFACTORAUTH)
+            ? (bool) $user->getData(ModifierUserInterface::IS_ENABLE_2FA_AUTH)
             : true;
     }
 }

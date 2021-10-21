@@ -8,6 +8,6 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="admin_user" resource="default" engine="innodb" comment="Admin User Table">
-        <column xsi:type="boolean" name="is_enable_twofactorauth" default="true" nullable="false"/>
+        <column xsi:type="boolean" name="is_enable_2fa" default="true" nullable="false"/>
     </table>
 </schema>

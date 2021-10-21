@@ -38,8 +38,8 @@ class ModifierDataProvider
         $users = $this->userCollectionFactory->create()->getItems();
         /** @var User $user */
         foreach ($users as $user) {
-            $loadedData[(int)$user->getId()][ModifierUserInterface::IS_ENABLE_TWOFACTORAUTH] =
-                $user->getData(ModifierUserInterface::IS_ENABLE_TWOFACTORAUTH);
+            $loadedData[(int)$user->getId()][ModifierUserInterface::IS_ENABLE_2FA_AUTH] =
+                $user->getData(ModifierUserInterface::IS_ENABLE_2FA_AUTH);
         }
 
         return $loadedData;

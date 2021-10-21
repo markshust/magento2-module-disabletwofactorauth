@@ -12,5 +12,7 @@ use Magento\User\Api\Data\UserInterface;
  */
 interface ModifierUserInterface extends UserInterface
 {
-    public const IS_ENABLE_TWOFACTORAUTH = 'is_enable_twofactorauth';
+    public const IS_ENABLE_2FA_AUTH = 'is_enable_2fa';
+    public const FIELD_2FA_DISABLE = false;
+    public const FIELD_2FA_ENABLE = true;
 }
