@@ -28,6 +28,7 @@ open up any security holes, as it just works off of a simple config toggle which
 functionality. 
  
 ![Demo](https://raw.githubusercontent.com/markshust/magento2-module-disabletwofactorauth/master/docs/demo.png)
+![two-factor-auth-for-admin](https://raw.githubusercontent.com/markshust/magento2-module-disabletwofactorauth/master/docs/two-factor-auth-for-admin.png)
 
 ## Installation
 
