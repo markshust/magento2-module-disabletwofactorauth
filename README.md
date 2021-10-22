@@ -62,6 +62,25 @@ CLI: `bin/magento config:set twofactorauth/general/enable_for_api_token_generati
 
 *NOTE: Always keep 2FA enabled within production environments for security purposes.*
 
+### Change 2FA for user (admin)
+
+Enables the bypass of 2FA for admin access. We have to disable 2FA for this user.
+
+#### If you want disable 2FA for user
+Visit **Admin > System > Permissions > All Users > Pick user -> 2FA ** and set *Enable 2FA* to **No**.
+CLI: `bin/magento admin:user:2fa:disable <username>`
+
+#### If you want enable 2FA for user
+Visit **Admin > System > Permissions > All Users > Pick user -> 2FA ** and set *Enable 2FA* to **Yes**.
+CLI: `bin/magento admin:user:2fa:enable <username>`
+
+*NOTE:*
+```
+If 2FA is enabled for user, and it is disabled for website, always returns true, so all requests bypass 2FA.
+If 2FA is disabled for user, and it is enabled for website, always returns true, so all requests bypass 2FA.
+If 2FA is disabled for user, and it is disabled for website, always returns true, so all requests bypass 2FA.
+If 2FA is enabled for user, and it is enabled for website, returns the original result.
+```
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
