@@ -2,18 +2,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <type name="Magento\TwoFactorAuth\Model\TfaSession">
-        <plugin name="bypassTwoFactorAuth" type="MarkShust\DisableTwoFactorAuth\Plugin\BypassTwoFactorAuth" sortOrder="1"/>
-    </type>
-
     <type name="Magento\TwoFactorAuth\Model\AdminAccessTokenService">
         <plugin name="bypassTwoFactorAuthForApiTokenGeneration"
                 type="MarkShust\DisableTwoFactorAuth\Plugin\BypassTwoFactorAuthForApiTokenGeneration"/>
     </type>
-
     <type name="Magento\TwoFactorAuth\Model\TfaSession">
         <plugin name="bypassTwoFactorAuthForAdmins"
-                type="MarkShust\DisableTwoFactorAuth\Plugin\BypassTwoFactorAuthForAdmins" sortOrder="2"/>
+                type="MarkShust\DisableTwoFactorAuth\Plugin\BypassTwoFactorAuthForWebsiteOrSomeUser"/>
     </type>
 
     <preference

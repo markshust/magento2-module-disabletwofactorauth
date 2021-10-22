@@ -10,10 +10,10 @@ use Magento\Backend\Model\Auth\Session as AuthSession;
 use MarkShust\DisableTwoFactorAuth\App\Data\ModifierUserInterface;
 
 /**
- * Class BypassTwoFactorAuthForAdmins
+ * Class BypassTwoFactorAuthForWebsiteOrSomeUser
  * @package MarkShust\DisableTwoFactorAuth\Plugin
  */
-class BypassTwoFactorAuthForAdmins
+class BypassTwoFactorAuthForWebsiteOrSomeUser
 {
     /**
      * @var TwoFactorAuthInterface
@@ -54,7 +54,7 @@ class BypassTwoFactorAuthForAdmins
         if (!$this->twoFactorAuthConfig->isEnable()) {
             return true;
         }
-        if (!$this->isEnableAuthByUser()) {
+        if (!$this->isEnableAuthForCurrentUser()) {
             return true;
         }
 
@@ -64,7 +64,7 @@ class BypassTwoFactorAuthForAdmins
     /**
      * @return bool
      */
-    public function isEnableAuthByUser(): bool
+    public function isEnableAuthForCurrentUser(): bool
     {
         return ($user = $this->authSession->getUser())
             ? (bool) $user->getData(ModifierUserInterface::IS_ENABLE_2FA_AUTH)
