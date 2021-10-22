@@ -1,7 +1,7 @@
 {
     "admin_user": {
         "column": {
-            "is_enable_twofactorauth": true
+            "is_enable_2fa": true
         }
     }
 }

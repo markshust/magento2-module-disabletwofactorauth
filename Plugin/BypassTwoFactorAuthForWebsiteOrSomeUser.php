@@ -41,9 +41,10 @@ class BypassTwoFactorAuthForWebsiteOrSomeUser
     /**
      * Enables the bypass of 2FA for admin access.
      * This can be useful within development & integration environments.
-     *
-     * If 2FA is enabled for user, return the original result.
-     * If 2FA is disabled for user, always return true so all requests bypass 2FA.
+     * If 2FA is enabled for user, and it is disabled for website, always returns true, so all requests bypass 2FA.
+     * If 2FA is disabled for user, and it is enabled for website, always returns true, so all requests bypass 2FA.
+     * If 2FA is disabled for user, and it is disabled for website, always returns true, so all requests bypass 2FA.
+     * If 2FA is enabled for user, and it is enabled for website, returns the original result.
      *
      * @param TfaSession $tfaSession
      * @param $isGranted
