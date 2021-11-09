@@ -5,6 +5,7 @@ namespace MarkShust\DisableTwoFactorAuth\Plugin;
 
 use Closure;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\State;
 use Magento\Framework\Exception\AuthenticationException;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
@@ -17,30 +18,39 @@ use Magento\TwoFactorAuth\Model\AdminAccessTokenService;
  */
 class BypassTwoFactorAuthForApiTokenGeneration
 {
-    const XML_PATH_CONFIG_ENABLE_FOR_API_TOKEN_GENERATION = 'twofactorauth/general/enable_for_api_token_generation';
+    /** @var AdminTokenServiceInterface */
+    private $adminTokenService;
 
     /** @var ScopeConfigInterface */
     private $scopeConfig;
 
-    /** @var AdminTokenServiceInterface */
-    private $adminTokenService;
+    /** @var State */
+    private $appState;
 
     /**
      * BypassTwoFactorAuthForApiTokenGeneration constructor.
      * @param AdminTokenServiceInterface $adminTokenService
      * @param ScopeConfigInterface $scopeConfig
+     * @param State $appState
      */
     public function __construct(
         AdminTokenServiceInterface $adminTokenService,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        State $appState
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->adminTokenService = $adminTokenService;
+        $this->appState = $appState;
     }
 
     /**
      * Enables the bypass of 2FA for API token generation.
-     * This can be useful for third-party vendors during module development.
+     * This can be useful for within development & integration environments.
+     *
+     * If 2FA is enabled, return the original result.
+     * If developer mode is enabled, 2FA is disabled unless "Disable 2FA in developer mode" is set to No.
+     *
+     * Calling createAdminAccessToken within this function bypasses 2FA.
      *
      * NOTE: Always keep 2FA enabled within production environments for security purposes.
      *
@@ -59,7 +69,19 @@ class BypassTwoFactorAuthForApiTokenGeneration
         $username,
         $password
     ): string {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_CONFIG_ENABLE_FOR_API_TOKEN_GENERATION)
+        $is2faEnabled = $this->scopeConfig->isSetFlag(
+            BypassTwoFactorAuth::XML_PATH_CONFIG_ENABLE_FOR_API_TOKEN_GENERATION
+        );
+        $isDeveloperMode = $this->appState->getMode() == State::MODE_DEVELOPER;
+        $alwaysDisableInDeveloperMode = $this->scopeConfig->isSetFlag(
+            BypassTwoFactorAuth::XML_PATH_CONFIG_DISABLE_IN_DEVELOPER_MODE
+        );
+
+        if ($isDeveloperMode && $alwaysDisableInDeveloperMode) {
+            $is2faEnabled = false;
+        }
+
+        return $is2faEnabled
             ? $proceed($username, $password)
             : $this->adminTokenService->createAdminAccessToken($username, $password);
     }

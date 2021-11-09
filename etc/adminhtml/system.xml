@@ -8,17 +8,14 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Warning: Enabling 2FA will immediately prompt admin user for OTP code.</comment>
                 </field>
-                <field id="disable_developer_auth" translate="label" type="select" sortOrder="150" showInDefault="1" canRestore="1">
-                    <label>Disable Developer Mode 2FA</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Disable 2FA only when Magento is in developer mode.</comment>
-                    <depends>
-                        <field id="enable">1</field>
-                    </depends>
-                </field>
                 <field id="enable_for_api_token_generation" translate="label" type="select" sortOrder="200" showInDefault="1" canRestore="1">
                     <label>Enable 2FA for API Token Generation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="disable_in_developer_mode" translate="label" type="select" sortOrder="150" showInDefault="1" canRestore="1">
+                    <label>Disable 2FA in Developer Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When set to No the above settings are used, otherwise 2FA is disabled in developer mode.</comment>
                 </field>
                 <field id="force_providers">
                     <depends>
