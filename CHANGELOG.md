@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2021-11-10
+
+This is a potentially breaking release, as it changes the overall functionality when Magento is in `developer` mode. A new "Disable 2FA in Developer Mode" system configuration has been created, which is a Yes/No toggle. By default, it is set to Yes so that 2FA is automatically disabled when a Magento site is in `developer` mode. When this is set to No, the two other 2FA configuration dropdowns set the configuration for 2FA. When not in `developer` mode, this toggle has no effect.
+
+### Added
+- Add ability to automatically disable 2FA when in developer mode ([#13](https://github.com/markshust/magento2-module-disabletwofactorauth/pull/13)).
+
 ## [1.1.4] - 2021-02-22
 
 ### Fixed
