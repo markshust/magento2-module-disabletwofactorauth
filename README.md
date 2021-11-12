@@ -12,6 +12,7 @@
 ## Table of contents
 
 - [Summary](#summary)
+- [Why](#why)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
@@ -30,6 +31,12 @@ functionality.
 You can also toggle 2FA back on while in developer mode, if you need to test your code functionality while 2FA is enabled.
  
 ![Demo](https://raw.githubusercontent.com/markshust/magento2-module-disabletwofactorauth/master/docs/demo-2021-11-10.png)
+
+## Why
+
+Why should you use this module? I hear all of the time that you can just disable Magento's 2FA module. There is a large inherent issue with doing this though.
+
+When you disable a module, it updates the `app/etc/config.php` file with the removed module, which will eventually make its way upstream (accidentally committed to version control or unintendedly leaving your development environment). This will disable 2FA on staging/production, which is a big security concern. This module resolves this because you can keep it installed & enabled on dev/stage/prod, but control whether or not 2FA is enabled or disabled with configuration settings or environment variables. This means you can have it permanently disabled on dev, but have it permanently enabled in all other environments, all while keeping this module installed in all environments.
 
 ## Installation
 
