@@ -11,6 +11,7 @@ use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Integration\Api\AdminTokenServiceInterface;
 use Magento\TwoFactorAuth\Model\AdminAccessTokenService;
+use MarkShust\DisableTwoFactorAuth\Action\ShouldCurrentIpBypassTwoFactorAuth;
 
 /**
  * Class BypassWebApiTwoFactorAuth
@@ -27,20 +28,26 @@ class BypassTwoFactorAuthForApiTokenGeneration
     /** @var State */
     private $appState;
 
+    /** @var ShouldCurrentIpBypassTwoFactorAuth */
+    private $shouldCurrentIpBypassTwoFactorAuth;
+
     /**
      * BypassTwoFactorAuthForApiTokenGeneration constructor.
      * @param AdminTokenServiceInterface $adminTokenService
      * @param ScopeConfigInterface $scopeConfig
      * @param State $appState
+     * @param ShouldCurrentIpBypassTwoFactorAuth $shouldCurrentIpBypassTwoFactorAuth
      */
     public function __construct(
         AdminTokenServiceInterface $adminTokenService,
         ScopeConfigInterface $scopeConfig,
-        State $appState
+        State $appState,
+        ShouldCurrentIpBypassTwoFactorAuth $shouldCurrentIpBypassTwoFactorAuth
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->adminTokenService = $adminTokenService;
         $this->appState = $appState;
+        $this->shouldCurrentIpBypassTwoFactorAuth = $shouldCurrentIpBypassTwoFactorAuth;
     }
 
     /**
@@ -77,7 +84,9 @@ class BypassTwoFactorAuthForApiTokenGeneration
             BypassTwoFactorAuth::XML_PATH_CONFIG_DISABLE_IN_DEVELOPER_MODE
         );
 
-        if ($isDeveloperMode && $alwaysDisableInDeveloperMode) {
+        if (($isDeveloperMode && $alwaysDisableInDeveloperMode)
+            || $this->shouldCurrentIpBypassTwoFactorAuth->execute()
+        ) {
             $is2faEnabled = false;
         }
 

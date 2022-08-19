@@ -6,6 +6,7 @@ namespace MarkShust\DisableTwoFactorAuth\Plugin;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\State;
 use Magento\TwoFactorAuth\Model\TfaSession;
+use MarkShust\DisableTwoFactorAuth\Action\ShouldCurrentIpBypassTwoFactorAuth;
 
 /**
  * Class BypassTwoFactorAuth
@@ -23,17 +24,23 @@ class BypassTwoFactorAuth
     /** @var State */
     private $appState;
 
+    /** @var ShouldCurrentIpBypassTwoFactorAuth  */
+    private $shouldCurrentIpBypassTwoFactorAuth;
+
     /**
      * BypassTwoFactorAuth constructor.
      * @param ScopeConfigInterface $scopeConfig
      * @param State $appState
+     * @param ShouldCurrentIpBypassTwoFactorAuth $shouldCurrentIpBypassTwoFactorAuth
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
-        State $appState
+        State $appState,
+        ShouldCurrentIpBypassTwoFactorAuth $shouldCurrentIpBypassTwoFactorAuth
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->appState = $appState;
+        $this->shouldCurrentIpBypassTwoFactorAuth = $shouldCurrentIpBypassTwoFactorAuth;
     }
 
     /**
@@ -59,7 +66,9 @@ class BypassTwoFactorAuth
         $isDeveloperMode = $this->appState->getMode() == State::MODE_DEVELOPER;
         $alwaysDisableInDeveloperMode = $this->scopeConfig->isSetFlag(self::XML_PATH_CONFIG_DISABLE_IN_DEVELOPER_MODE);
 
-        if ($isDeveloperMode && $alwaysDisableInDeveloperMode) {
+        if (($isDeveloperMode && $alwaysDisableInDeveloperMode)
+            || $this->shouldCurrentIpBypassTwoFactorAuth->execute()
+        ) {
             $is2faEnabled = false;
         }
 

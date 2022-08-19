@@ -17,6 +17,10 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Set to No to use the above settings, otherwise 2FA is disabled in developer mode.</comment>
                 </field>
+                <field id="disable_for_ips" translate="label" type="text" sortOrder="930" showInDefault="1" canRestore="1">
+                    <label>Disable for IPs</label>
+                    <comment>Comma-separated list of IPs for which 2FA will always be disabled.</comment>
+                </field>
                 <field id="force_providers">
                     <depends>
                         <field id="enable">1</field>
