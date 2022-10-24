@@ -43,7 +43,12 @@ class FillOtpOverride extends Helper
     private function checkIfTwoFactorIsEnabled(MagentoWebDriver $webDriver): bool
     {
         try {
-            return (bool)str_replace(PHP_EOL, '', $webDriver->magentoCLI('config:show twofactorauth/general/enable'));
+            $cliResult = $webDriver->magentoCLI('config:show twofactorauth/general/enable');
+            if ($cliResult === 'CLI did not return output.') {
+                return false;
+            }
+
+            return (bool)str_replace(PHP_EOL, '', $cliResult);
         } catch (TestFrameworkException $exception) {
 
             return false;
