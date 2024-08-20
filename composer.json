@@ -1,12 +1,12 @@
 {
-    "name": "markshust/magento2-module-disabletwofactorauth",
-    "description": "The DisableTwoFactorAuth module provides the ability to disable two-factor authentication.",
+    "name": "rsilva/disabletwofactorauth",
+    "description": "The DisableTwoFactorAuth module provides the ability to disable two-factor authentication on developer mode.",
     "require": {
         "php": "^7||^8",
         "magento/framework": "^103"
     },
     "type": "magento2-module",
-    "version": "2.0.1",
+    "version": "1.0.0",
     "license": [
         "MIT"
     ],
@@ -15,7 +15,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MarkShust\\DisableTwoFactorAuth\\": ""
+            "RSilva\\DisableTwoFactorAuth\\": ""
         }
     }
 }
