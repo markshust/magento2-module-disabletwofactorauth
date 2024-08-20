@@ -1,6 +1,6 @@
 {
     "name": "rsilva/disabletwofactorauth",
-    "description": "The DisableTwoFactorAuth module provides the ability to disable two-factor authentication on developer mode.",
+    "description": "The DisableTwoFactorAuth module provides the ability to disable two-factor authentication only on developer mode.",
     "require": {
         "php": "^7||^8",
         "magento/framework": "^103"

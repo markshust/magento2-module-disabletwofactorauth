@@ -9,3 +9,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release.
 - Forked from https://github.com/markshust/magento2-module-disabletwofactorauth version 2.0.1
+- Removed configuration that allows disabling 2FA in production environment

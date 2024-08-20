@@ -21,9 +21,6 @@ class FillOtpOverride extends Helper
     {
         /** @var MagentoWebDriver $webDriver */
         $webDriver = $this->getModule('\\' . MagentoWebDriver::class);
-        if (!$this->checkIfTwoFactorIsEnabled($webDriver)) {
-            return;
-        }
         try {
             $webDriver->seeElementInDOM($errorMessageSelector);
             // Login failed so don't handle 2fa
@@ -35,24 +32,5 @@ class FillOtpOverride extends Helper
             $webDriver->click($confirmSelector);
             $webDriver->waitForPageLoad();
         }
-    }
-
-    /**
-     * @param MagentoWebDriver $webDriver
-     */
-    private function checkIfTwoFactorIsEnabled(MagentoWebDriver $webDriver): bool
-    {
-        try {
-            $cliResult = $webDriver->magentoCLI('config:show twofactorauth/general/enable');
-            if ($cliResult === 'CLI did not return output.') {
-                return false;
-            }
-
-            return (bool)str_replace(PHP_EOL, '', $cliResult);
-        } catch (TestFrameworkException $exception) {
-
-            return false;
-        }
-
     }
 }

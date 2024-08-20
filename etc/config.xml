@@ -3,8 +3,6 @@
     <default>
         <twofactorauth>
             <general>
-                <enable>1</enable>
-                <enable_for_api_token_generation>1</enable_for_api_token_generation>
                 <disable_in_developer_mode>1</disable_in_developer_mode>
             </general>
         </twofactorauth>

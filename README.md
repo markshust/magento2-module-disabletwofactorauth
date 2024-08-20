@@ -1,4 +1,4 @@
-<h1 align="center">MarkShust_DisableTwoFactorAuth</h1> 
+<h1 align="center">RSilva_DisableTwoFactorAuth</h1> 
 
 <div align="center">
   <p>Provides the ability to disable two-factor authentication.</p>

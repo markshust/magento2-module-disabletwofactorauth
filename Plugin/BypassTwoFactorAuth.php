@@ -1,27 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace MarkShust\DisableTwoFactorAuth\Plugin;
+namespace RSilva\DisableTwoFactorAuth\Plugin;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\State;
+use Magento\Framework\Module\Manager;
 use Magento\TwoFactorAuth\Model\TfaSession;
 
 /**
  * Class BypassTwoFactorAuth
- * @package MarkShust\DisableTwoFactorAuth\Plugin
+ * @package RSilva\DisableTwoFactorAuth\Plugin
  */
 class BypassTwoFactorAuth
 {
-    const XML_PATH_CONFIG_ENABLE = 'twofactorauth/general/enable';
-    const XML_PATH_CONFIG_ENABLE_FOR_API_TOKEN_GENERATION = 'twofactorauth/general/enable_for_api_token_generation';
     const XML_PATH_CONFIG_DISABLE_IN_DEVELOPER_MODE = 'twofactorauth/general/disable_in_developer_mode';
-
-    /** @var ScopeConfigInterface */
-    private $scopeConfig;
-
-    /** @var State */
-    private $appState;
 
     /**
      * BypassTwoFactorAuth constructor.
@@ -29,11 +22,10 @@ class BypassTwoFactorAuth
      * @param State $appState
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig,
-        State $appState
+        private readonly ScopeConfigInterface $scopeConfig,
+        private readonly State $appState,
+        private readonly Manager $moduleManager
     ) {
-        $this->scopeConfig = $scopeConfig;
-        $this->appState = $appState;
     }
 
     /**
@@ -55,7 +47,7 @@ class BypassTwoFactorAuth
         TfaSession $subject,
         $result
     ): bool {
-        $is2faEnabled = $this->scopeConfig->isSetFlag(self::XML_PATH_CONFIG_ENABLE);
+        $is2faEnabled = $this->moduleManager->isEnabled('Magento_TwoFactorAuth');
         $isDeveloperMode = $this->appState->getMode() == State::MODE_DEVELOPER;
         $alwaysDisableInDeveloperMode = $this->scopeConfig->isSetFlag(self::XML_PATH_CONFIG_DISABLE_IN_DEVELOPER_MODE);
 

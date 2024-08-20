@@ -3,29 +3,10 @@
     <system>
         <section id="twofactorauth">
             <group id="general">
-                <field id="enable" translate="label" type="select" sortOrder="900" showInDefault="1" canRestore="1">
-                    <label>Enable 2FA</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Warning: Enabling 2FA will immediately prompt admin user for OTP code.</comment>
-                </field>
-                <field id="enable_for_api_token_generation" translate="label" type="select" sortOrder="910" showInDefault="1" canRestore="1">
-                    <label>Enable 2FA for API Token Generation</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
                 <field id="disable_in_developer_mode" translate="label" type="select" sortOrder="920" showInDefault="1" canRestore="1">
                     <label>Disable 2FA in Developer Mode</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Set to No to use the above settings, otherwise 2FA is disabled in developer mode.</comment>
-                </field>
-                <field id="force_providers">
-                    <depends>
-                        <field id="enable">1</field>
-                    </depends>
-                </field>
-                <field id="webapi_notification_url">
-                    <depends>
-                        <field id="enable">1</field>
-                    </depends>
                 </field>
             </group>
         </section>

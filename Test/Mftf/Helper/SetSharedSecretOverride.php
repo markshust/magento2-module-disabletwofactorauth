@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MarkShust\DisableTwoFactorAuth\Test\Mftf\Helper;
+namespace RSilva\DisableTwoFactorAuth\Test\Mftf\Helper;
 
 use Magento\FunctionalTestingFramework\DataGenerator\Handlers\CredentialStore;
 use Magento\FunctionalTestingFramework\Exceptions\TestFrameworkException;
@@ -30,9 +30,6 @@ class SetSharedSecretOverride extends Helper
             $sharedSecret = $credentialStore->decryptSecretValue(
                 $credentialStore->getSecret('magento/tfa/OTP_SHARED_SECRET')
             );
-            if (!$this->checkIfTwoFactorIsEnabled($webDriver)) {
-                return;
-            }
             try {
                 $webDriver->magentoCLI(
                     'security:tfa:google:set-secret ' . $username . ' ' . $sharedSecret
@@ -41,19 +38,5 @@ class SetSharedSecretOverride extends Helper
                 // Some tests intentionally use bad credentials.
             }
         }
-    }
-
-    /**
-     * @param MagentoWebDriver $webDriver
-     */
-    private function checkIfTwoFactorIsEnabled(MagentoWebDriver $webDriver): bool
-    {
-        try {
-            return (bool)str_replace(PHP_EOL, '', $webDriver->magentoCLI('config:show twofactorauth/general/enable'));
-        } catch (TestFrameworkException $exception) {
-
-            return false;
-        }
-
     }
 }
