@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<p>Provides the ability to disable two-factor authentication.</p>
+<p>Provides the ability to disable two-factor authentication on developer mode.</p>
 
 <img  src="https://img.shields.io/badge/magento-2.4-brightgreen.svg?logo=magento&longCache=true&style=flat-square"  alt="Supported Magento Versions"  />
 
