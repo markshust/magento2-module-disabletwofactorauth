@@ -16,11 +16,6 @@ class SetSharedSecretOverride extends Helper
      *
      * @param string $username
      */
-    /**
-     * Set the shared secret if appropriate
-     *
-     * @param string $username
-     */
     public function execute(string $username): void
     {
         /** @var MagentoWebDriver $webDriver */
