@@ -23,7 +23,7 @@ class SetSharedSecretOverride extends Helper
         $credentialStore = CredentialStore::getInstance();
         if ($username !== getenv('MAGENTO_ADMIN_USERNAME')) {
             $sharedSecret = $credentialStore->decryptSecretValue(
-                $credentialStore->getSecret('magento/tfa/OTP_SHARED_SECRET')
+                (string) $credentialStore->getSecret('magento/tfa/OTP_SHARED_SECRET')
             );
             if (!$this->checkIfTwoFactorIsEnabled($webDriver)) {
                 return;
