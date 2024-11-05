@@ -15,6 +15,7 @@
 - [Why](#why)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Credits](#credits)
 - [License](#license)
 
 ## Summary
@@ -78,6 +79,27 @@ This module automatically disables 2FA while developer mode is enabled, but ther
 To enable 2FA while in developer mode, visit **Admin > Stores > Settings > Configuration > Security > 2FA** and set *Disable 2FA in Developer Mode* to **No**.
 
 CLI: `bin/magento config:set twofactorauth/general/disable_in_developer_mode 0`
+
+## Credits
+
+### M.academy
+
+This course is sponsored by <a href="https://m.academy" target="_blank">M.academy</a>, the simplest way to master Magento development.
+
+<a href="https://m.academy" target="_blank"><img src="docs/macademy-logo-200x60.png" alt="M.academy"></a>
+
+### Mark Shust
+
+My name is Mark Shust and I am a 6X Adobe Commerce Certified Developer and the founder of <a href="https://m.academy" target="_blank">M.academy</a>. Since the early days of Magento, I've been involved with many intricately complex eCommerce and open-source projects.
+
+My passion is teaching and helping others learn Magento, and has created many courses and tutorials to help thousands of students from all over the world to learn and improve their Magento skills.
+
+- <a href="https://m.academy/courses/" target="_blank">🖥️ Learn Magento with my courses</a>
+- <a href="https://m.academy/articles/" target="_blank">📖 Read my technical articles</a>
+- <a href="https://www.linkedin.com/in/MarkShust/" target="_blank">🔗 Connect on LinkedIn</a>
+- <a href="https://youtube.com/markshust" target="_blank">🎥 Watch on YouTube</a>
+- <a href="https://twitter.com/MarkShust" target="_blank">🐦 Follow me on X</a>
+- <a href="https://m.academy/contact/" target="_blank">💌 Contact me</a>
 
 ## License
 
