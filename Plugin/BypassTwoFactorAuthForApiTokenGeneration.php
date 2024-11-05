@@ -56,8 +56,8 @@ class BypassTwoFactorAuthForApiTokenGeneration
      *
      * @param AdminAccessTokenService $subject
      * @param Closure $proceed
-     * @param $username
-     * @param $password
+     * @param string $username
+     * @param string $password
      * @return string
      * @throws AuthenticationException
      * @throws InputException
