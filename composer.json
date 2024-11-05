@@ -1,6 +1,14 @@
 {
     "name": "markshust/magento2-module-disabletwofactorauth",
     "description": "The DisableTwoFactorAuth module provides the ability to disable two-factor authentication.",
+    "keywords": [
+        "dev",
+        "magento",
+        "magento2",
+        "two-factor",
+        "authentication",
+        "2fa"
+    ],
     "require": {
         "php": "^7||^8",
         "magento/framework": "^103"

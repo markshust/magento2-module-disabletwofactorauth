@@ -42,7 +42,7 @@ When you disable a module, it updates the `app/etc/config.php` file with the rem
 ## Installation
 
 ```
-composer require markshust/magento2-module-disabletwofactorauth
+composer require --dev markshust/magento2-module-disabletwofactorauth
 bin/magento module:enable MarkShust_DisableTwoFactorAuth
 bin/magento setup:upgrade
 ```
@@ -51,6 +51,8 @@ bin/magento setup:upgrade
 
 This module automatically disables 2FA in developer mode (since version 2.0.0). In any other deployment mode, 2FA is kept enabled by default. This is to prevent any unexpected side effects or security loopholes from
 being introduced during automated installation processes.
+
+It is highly recommended to install this module as a dev dependency to avoid security warning reports from either Adobe Commerce or other production environments which run security checks. This can be done either by passing in the `--dev` flag when installing it with Composer, or by adding it to the `require-dev` property of your `composer.json` file.
 
 ### Disable 2FA
 
