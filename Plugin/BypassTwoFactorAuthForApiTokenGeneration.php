@@ -69,7 +69,10 @@ class BypassTwoFactorAuthForApiTokenGeneration
         $username,
         $password
     ): string {
-        $is2faEnabled = $this->scopeConfig->isSetFlag(
+        $isMain2faEnabled = $this->scopeConfig->isSetFlag(
+            BypassTwoFactorAuth::XML_PATH_CONFIG_ENABLE
+        );
+        $isApi2faEnabled = $this->scopeConfig->isSetFlag(
             BypassTwoFactorAuth::XML_PATH_CONFIG_ENABLE_FOR_API_TOKEN_GENERATION
         );
         $isDeveloperMode = $this->appState->getMode() == State::MODE_DEVELOPER;
@@ -78,8 +81,12 @@ class BypassTwoFactorAuthForApiTokenGeneration
         );
 
         if ($isDeveloperMode && $alwaysDisableInDeveloperMode) {
-            $is2faEnabled = false;
+            $isMain2faEnabled = false;
+            $isApi2faEnabled = false;
         }
+
+        // Only enable 2FA for API tokens if both main 2FA and API token 2FA are enabled
+        $is2faEnabled = $isMain2faEnabled && $isApi2faEnabled;
 
         return $is2faEnabled
             ? $proceed($username, $password)
