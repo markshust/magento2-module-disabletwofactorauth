@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] - 2024-11-05
+
+### Added
+- Added PHPStan level 9 support by improving type hints ([#27](https://github.com/markshust/magento2-module-disabletwofactorauth/pull/27))
+- Added keywords to composer.json for better package discovery
+
+### Updated
+- Updated installation instructions to recommend using `--dev` flag with composer
+- Made package explicitly development-focused to avoid Adobe Commerce security warnings ([#28](https://github.com/markshust/magento2-module-disabletwofactorauth/pull/28))
+- Updated badge icon with support for newer versions of Magento
+
+### Fixed
+- Fixed issue where 2FA could remain enabled for API token generation when main 2FA was disabled ([#29](https://github.com/markshust/magento2-module-disabletwofactorauth/pull/29))
+
 ## [2.0.1] - 2022-10-24
 
 ### Fixed
