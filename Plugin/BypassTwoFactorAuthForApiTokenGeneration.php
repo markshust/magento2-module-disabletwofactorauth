@@ -85,7 +85,6 @@ class BypassTwoFactorAuthForApiTokenGeneration
             $isApi2faEnabled = false;
         }
 
-        // Only enable 2FA for API tokens if both main 2FA and API token 2FA are enabled
         $is2faEnabled = $isMain2faEnabled && $isApi2faEnabled;
 
         return $is2faEnabled
