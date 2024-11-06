@@ -86,7 +86,7 @@ CLI: `bin/magento config:set twofactorauth/general/disable_in_developer_mode 0`
 
 ### M.academy
 
-This course is sponsored by <a href="https://m.academy/" target="_blank">M.academy</a>, the simplest way to master Magento development.
+This module is sponsored by <a href="https://m.academy/" target="_blank">M.academy</a>, the simplest way to master Magento development.
 
 <a href="https://m.academy/" target="_blank"><img src="docs/macademy-logo-200x60.png" alt="M.academy"></a>
 
